@@ -51,7 +51,7 @@ class App extends Component {
   };
 
   render() {
-    const { filter } = this.state;
+    const { contacts, filter } = this.state;
     const filteredContacts = this.getFilteredContacts();
 
     return (
@@ -60,7 +60,11 @@ class App extends Component {
         <ContactForm onAdd={this.addContact} />
 
         <h2 className={css.subtitle}>Contacts</h2>
-        <Filter value={filter} onChange={this.updateFilter} />
+        <Filter
+          value={filter}
+          onChange={this.updateFilter}
+          isDisabled={contacts.length < 2}
+        />
         <ContactList
           contacts={filteredContacts}
           onDelete={this.deleteContact}

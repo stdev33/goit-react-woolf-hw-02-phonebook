@@ -1,7 +1,7 @@
 import React from 'react';
 import css from './Filter.module.css';
 
-function Filter({ value, onChange }) {
+function Filter({ value, onChange, isDisabled }) {
   return (
     <div className={css.filterContainer}>
       <label className={css.filterLabel}>
@@ -11,6 +11,7 @@ function Filter({ value, onChange }) {
           className={css.filterInput}
           value={value}
           onChange={onChange}
+          disabled={isDisabled}
         />
       </label>
     </div>
