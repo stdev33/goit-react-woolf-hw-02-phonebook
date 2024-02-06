@@ -12,14 +12,22 @@ class App extends Component {
   };
 
   addContact = ({ name, number }) => {
-    const contact = {
+    const isContactExist = this.state.contacts.find(
+      contact => contact.name === name
+    );
+    if (isContactExist) {
+      alert(`${name} is already in contacts.`);
+      return;
+    }
+
+    const newContact = {
       id: nanoid(),
       name,
       number,
     };
 
     this.setState(prevState => ({
-      contacts: [contact, ...prevState.contacts],
+      contacts: [newContact, ...prevState.contacts],
     }));
   };
 
