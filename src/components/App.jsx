@@ -4,6 +4,7 @@ import ContactForm from './ContactForm/ContactForm';
 import Filter from './Filter/Filter';
 import ContactList from './ContactList/ContactList';
 import css from './App.module.css';
+import { isWhitespacesOrEmpty } from '../helpers/helpers';
 
 class App extends Component {
   state = {
@@ -32,7 +33,7 @@ class App extends Component {
   };
 
   updateFilter = event => {
-    this.setState({ filter: event.target.value });
+    this.setState({ filter: event.target.value.trimStart() });
   };
 
   getFilteredContacts = () => {
@@ -63,7 +64,7 @@ class App extends Component {
         <Filter
           value={filter}
           onChange={this.updateFilter}
-          isDisabled={contacts.length < 2}
+          isDisabled={contacts.length < 2 && isWhitespacesOrEmpty(filter)}
         />
         <ContactList
           contacts={filteredContacts}
